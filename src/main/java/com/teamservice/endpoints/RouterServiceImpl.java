@@ -2,24 +2,34 @@ package com.teamservice.endpoints;
 
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
-import com.teamservice.repositories.UserRepository;
 import com.teamservice.services.GroupService;
 import com.teamservice.services.UserService;
+import jakarta.annotation.Resource;
+import jakarta.ejb.Init;
 import jakarta.inject.Inject;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
+import jakarta.servlet.ServletContext;
+import jakarta.xml.ws.WebServiceContext;
+import jakarta.xml.ws.handler.MessageContext;
 
 @WebService(endpointInterface = "com.teamservice.endpoints.RouterService",
         portName = "routerPort",
         serviceName = "routerService")
-@NoArgsConstructor
 //todo обозвать параметры
 public class RouterServiceImpl implements RouterService {
     private UserService userService;
     private GroupService groupService;
+    private Long x;
+    @Resource
+    private WebServiceContext context;
+    public RouterServiceImpl(){
+        ServletContext servletContext =
+                (ServletContext) context.getMessageContext().get(MessageContext.SERVLET_CONTEXT);
+        x = (Long) servletContext.getAttribute("x");
+    }
+
+
     @Override
     @WebMethod
     public User createUser(User user) {

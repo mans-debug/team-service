@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -21,7 +21,7 @@ public class User {
 
     private String lastName;
 
-    private LocalDateTime lastModified;
+    private Date lastModified;
 
     @ManyToOne
     @JoinColumn(name = "group_id")

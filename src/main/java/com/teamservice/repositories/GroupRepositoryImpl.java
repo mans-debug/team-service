@@ -1,7 +1,10 @@
 package com.teamservice.repositories;
 
+import com.teamservice.conf.ORMSessionFactory;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,7 +12,10 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
+@ApplicationScoped
 public class GroupRepositoryImpl implements GroupRepository {
+    @Inject
+    @ORMSessionFactory(ORMSessionFactory.ORMType.HIBERNATE)
     private SessionFactory sessionFactory;
 
 

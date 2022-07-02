@@ -16,8 +16,9 @@ Inc.//DTD Web Application 2.3//EN"
     </servlet>
     <servlet-mapping>
         <servlet-name>JAXWSServlet</servlet-name>
-        <url-pattern>/router-service</url-pattern>
+        <url-pattern>/service/*</url-pattern>
     </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

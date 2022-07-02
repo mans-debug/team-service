@@ -5,5 +5,11 @@
     <endpoint
             name="RouterService"
             implementation="com.teamservice.endpoints.RouterServiceImpl"
-            url-pattern="/router-service"/>
+            url-pattern="/service/router"/>
+
+    <endpoint
+            name="NotificatorService"
+            implementation="com.teamservice.endpoints.NotificatorServiceImpl"
+            url-pattern="/service/notificator"/>
+
 </endpoints>

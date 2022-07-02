@@ -4,11 +4,17 @@ import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import com.teamservice.repositories.GroupRepository;
 import com.teamservice.repositories.UserRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
 import java.util.List;
 
+@ApplicationScoped
 public class GroupServiceImpl implements GroupService {
+    @Inject
     private GroupRepository groupRepository;
+    @Inject
     private UserRepository userRepository;
 
     @Override
