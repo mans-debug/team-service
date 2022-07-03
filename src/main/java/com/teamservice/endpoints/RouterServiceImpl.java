@@ -56,17 +56,23 @@ public class RouterServiceImpl implements RouterService {
     }
 
     @Override
-    @WebMethod
-    public User[] usersNotInGroup(@WebParam(name = "groupId") Long groupId) {
+    public User[] usersNotInGroup(Long groupId) {
         init();
-        return userService.usersNotInGroup(groupId).toArray(new User[0]);
+        User user1 = new User(1L,"priv","kek");
+        User user2 = new User(2L,"prv","kek");
+        User user3 = new User(3L,"iv","kek");
+        User[] users = new User[]{user1,user2,user3};
+        return users;
+        //return userService.usersNotInGroup(groupId).toArray(new User[0]);
     }
 
     @Override
-    @WebMethod
-    public Long getGroupIdByTeamleadId(@WebParam(name = "teamleadId") Long teamleadId){
+    public GroupDto getGroupIdByTeamleadId(Long teamleadId){
         init();
-        return groupService.getByTeamleadId(teamleadId).getId();
+        //TODO return groupDto
+       //return groupService.getByTeamleadId(teamleadId);
+        return new GroupDto();
+
     }
     
     private void init(){

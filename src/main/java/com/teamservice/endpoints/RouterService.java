@@ -6,6 +6,7 @@ import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
+import jakarta.jws.WebResult;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 
@@ -23,9 +24,11 @@ public interface RouterService {
     void addUser(Long userId, Long teamId);
 
     void removeByTeamLeadId(Long teamleadId);
-
+    @WebMethod(action = "usersNotInGroup", operationName = "usersNotInGroup")
+    @WebResult(name="userArray", partName="users")
     User[] usersNotInGroup(Long groupId);
 
-    @WebMethod
-    Long getGroupIdByTeamleadId(@WebParam(name = "userid") Long userId);
+    @WebMethod(action = "getGroupIdByTeamleadId", operationName = "getGroupIdByTeamleadId")
+    @WebResult(name="group", partName="group")
+    GroupDto getGroupIdByTeamleadId(@WebParam(name = "userid") Long userId);
 }

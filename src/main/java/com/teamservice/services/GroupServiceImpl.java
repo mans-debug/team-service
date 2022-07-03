@@ -19,7 +19,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group create(GroupDto groupDto) {
-        Optional<User> teamlead = userRepository.findById(groupDto.getTeamleadId());
+        Optional<User> teamlead = userRepository.findById(groupDto.getTeamLeadId());
         Group createdGroup = null;
         teamlead.ifPresent(x -> {
             Group group = Group.builder()

@@ -28,4 +28,10 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
+
+    public User(Long telegramId, String firstName, String lastName) {
+        this.telegramId = telegramId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
