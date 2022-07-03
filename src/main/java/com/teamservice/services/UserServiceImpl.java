@@ -46,17 +46,22 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(x -> ExpiredUsers
                         .builder()
-                        .expiredUsers(x.getValue())
+                        .expiredUsers(userListToUserDtoList(x.getValue()))
                         .ownerId(x.getKey().getTelegramId())
                         .build())
                 .collect(Collectors.toList());
+    }
+
+    private List<UserDto> userListToUserDtoList(List<User> users) {
+        return users.stream()
+                .map(x -> new UserDto(x.getTelegramId(), x.getFirstName(), x.getLastName())).collect(Collectors.toList());
     }
 
     @Override
     public ExpiredUsers expiredLector() {
         List<User> users = userRepository.dayOverDue(3);
         return ExpiredUsers.builder()
-                .expiredUsers(users)
+                .expiredUsers(userListToUserDtoList(users))
                 .build();
     }
 

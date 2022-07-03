@@ -1,6 +1,5 @@
 package com.teamservice.dto;
 
-import com.teamservice.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 public class ExpiredUsers {
     private Long ownerId;
-    private List<User> expiredUsers;
+    private List<UserDto> expiredUsers;
 }
