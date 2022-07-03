@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @XmlRootElement(name = "group")
 public class GroupDto {
     @XmlElement(name="id")
-    private int id;
+    private Long id;
     @XmlElement(name="color")
     private String color;
     @XmlElement(name="teamLeadId")

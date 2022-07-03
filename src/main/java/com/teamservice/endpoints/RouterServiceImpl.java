@@ -65,9 +65,8 @@ public class RouterServiceImpl implements RouterService {
     public GroupDto getGroupIdByTeamleadId(Long teamleadId){
         init();
         //TODO return groupDto
-       //return groupService.getByTeamleadId(teamleadId);
-        return new GroupDto();
-
+       return groupService.getByTeamleadId(teamleadId);
+//        return new GroupDto();
     }
     
     private void init(){

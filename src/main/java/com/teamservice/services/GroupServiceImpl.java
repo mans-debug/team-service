@@ -6,8 +6,6 @@ import com.teamservice.models.User;
 import com.teamservice.repositories.GroupRepository;
 import com.teamservice.repositories.UserRepository;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Optional;
 
 public class GroupServiceImpl implements GroupService {
@@ -28,8 +26,8 @@ public class GroupServiceImpl implements GroupService {
                     .color(groupDto.getColor())
                     .teamLead(x)
                     .build();
-            addUser(x.getTelegramId(), group.getId());
             group = groupRepository.save(group);
+            addUser(x.getTelegramId(), group.getId());
         });
         return createdGroup;
     }
@@ -46,7 +44,16 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group getByTeamleadId(Long teamleadId) {
-        return groupRepository.getByTeamleadId(teamleadId);
+    public GroupDto getByTeamleadId(Long teamleadId) {
+        return groupToGroupDto(groupRepository.getByTeamleadId(teamleadId));
+    }
+
+    private GroupDto groupToGroupDto(Group group) {
+        int x =5;
+        return GroupDto.builder()
+                .id(group.getId())
+                .color(group.getColor())
+                .teamLeadId(group.getTeamLead().getTelegramId())
+                .build();
     }
 }
