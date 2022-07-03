@@ -1,6 +1,5 @@
 package com.teamservice.repositories;
 
-import com.teamservice.conf.ORMSessionFactory;
 import com.teamservice.models.User;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -11,11 +10,14 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
-@ApplicationScoped
 public class UserRepositoryImpl implements UserRepository {
-/*    @Inject
-    @ORMSessionFactory(ORMSessionFactory.ORMType.HIBERNATE)*/
+    /*    @Inject
+        @ORMSessionFactory(ORMSessionFactory.ORMType.HIBERNATE)*/
     private SessionFactory sessionFactory;
+
+    public UserRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 
     @Override
@@ -106,7 +108,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public List<User> dayOverDue(Integer days){
+    public List<User> dayOverDue(Integer days) {
         try (Session session = sessionFactory.openSession()) {
             return session
                     .createQuery("select u from User u where cast((current_date - u.lastModified) as integer) <= :days ", User.class)

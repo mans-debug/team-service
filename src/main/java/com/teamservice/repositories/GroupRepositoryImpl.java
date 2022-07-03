@@ -12,11 +12,13 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
-@ApplicationScoped
 public class GroupRepositoryImpl implements GroupRepository {
-    @Inject
-    @ORMSessionFactory(ORMSessionFactory.ORMType.HIBERNATE)
+
     private SessionFactory sessionFactory;
+
+    public GroupRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 
     @Override

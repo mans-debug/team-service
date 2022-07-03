@@ -16,8 +16,6 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     //todo would be better to make it a constant list
     private String color;
 

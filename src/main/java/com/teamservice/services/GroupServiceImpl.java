@@ -10,12 +10,14 @@ import jakarta.inject.Singleton;
 
 import java.util.List;
 
-@ApplicationScoped
 public class GroupServiceImpl implements GroupService {
-    @Inject
     private GroupRepository groupRepository;
-    @Inject
     private UserRepository userRepository;
+
+    public GroupServiceImpl(GroupRepository groupRepository, UserRepository userRepository) {
+        this.groupRepository = groupRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Group create(Group group) {

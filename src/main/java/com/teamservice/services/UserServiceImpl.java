@@ -2,6 +2,7 @@ package com.teamservice.services;
 
 import com.teamservice.dto.ExpiredUsers;
 import com.teamservice.models.User;
+import com.teamservice.repositories.GroupRepository;
 import com.teamservice.repositories.UserRepository;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Stateless;
@@ -11,11 +12,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Stateless
 public class UserServiceImpl implements UserService {
     public static final long LECTOR_ID = 2321321;
-    @Inject
     UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public User create(User user) {
         return userRepository.save(user);
