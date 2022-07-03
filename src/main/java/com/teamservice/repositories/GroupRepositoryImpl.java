@@ -1,6 +1,5 @@
 package com.teamservice.repositories;
 
-import com.teamservice.conf.ORMSessionFactory;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import jakarta.enterprise.context.ApplicationScoped;

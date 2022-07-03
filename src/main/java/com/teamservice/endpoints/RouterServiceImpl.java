@@ -3,7 +3,6 @@ package com.teamservice.endpoints;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import com.teamservice.services.GroupService;
-import com.teamservice.services.Stud;
 import com.teamservice.services.UserService;
 import jakarta.annotation.Resource;
 import jakarta.ejb.Init;
@@ -12,6 +11,7 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.servlet.ServletContext;
 import jakarta.xml.ws.WebServiceContext;
@@ -45,21 +45,22 @@ public class RouterServiceImpl implements RouterService {
 
     @Override
     @WebMethod
-    public void addUser(Long userId, Long teamId) {
+    public void addUser(@WebParam(name = "userId") Long userId,
+                        @WebParam(name = "teamId") Long teamId) {
 		init();
         groupService.addUser(userId, teamId);
     }
 
     @Override
     @WebMethod
-    public void removeByTeamLeadId(Long teamLeadId) {
+    public void removeByTeamLeadId(@WebParam(name = "teamId") Long teamLeadId) {
 		init();
         groupService.removeByTeamLeadId(teamLeadId);
     }
 
     @Override
     @WebMethod
-    public User[] usersNotInGroup(Long groupId) {
+    public User[] usersNotInGroup(@WebParam(name = "groupId") Long groupId) {
         init();
         return userService.usersNotInGroup(groupId).toArray(new User[0]);
     }
