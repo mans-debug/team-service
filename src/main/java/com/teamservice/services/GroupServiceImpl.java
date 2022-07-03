@@ -1,5 +1,6 @@
 package com.teamservice.services;
 
+import com.teamservice.dto.GroupDto;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import com.teamservice.repositories.GroupRepository;
@@ -9,6 +10,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GroupServiceImpl implements GroupService {
     private GroupRepository groupRepository;
@@ -20,16 +22,23 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group create(Group group) {
-        return groupRepository.save(group);
+    public Group create(GroupDto groupDto) {
+        Optional<User> teamlead = userRepository.findById(groupDto.getTeamleadId());
+        Group createdGroup = null;
+        teamlead.ifPresent(x -> {
+            Group group = Group.builder()
+                    .color(groupDto.getColor())
+                    .teamLead(x)
+                    .build();
+            group = groupRepository.save(group);
+        });
+        return createdGroup;
     }
 
     @Override
     public void addUser(Long userId, Long teamId) {
-        if (!userRepository.existsById(userId)){
-            return; //todo send fault message
-        }
-        groupRepository.addUser(teamId, userRepository.getById(userId));
+        userRepository.findById(userId)
+                .ifPresent(x -> groupRepository.addUser(teamId, userRepository.getById(userId)));
     }
 
     @Override

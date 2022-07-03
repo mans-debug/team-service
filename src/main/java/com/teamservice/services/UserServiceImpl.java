@@ -1,6 +1,7 @@
 package com.teamservice.services;
 
 import com.teamservice.dto.ExpiredUsers;
+import com.teamservice.dto.UserDto;
 import com.teamservice.models.User;
 import com.teamservice.repositories.GroupRepository;
 import com.teamservice.repositories.UserRepository;
@@ -21,8 +22,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(User user) {
-        return userRepository.save(user);
+    public User create(UserDto userDto) {
+        return userRepository.save(
+                User.builder()
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .telegramId(userDto.getTelegramId())
+                .build()
+        );
     }
 
     @Override

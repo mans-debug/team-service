@@ -1,11 +1,11 @@
 package com.teamservice.endpoints;
 
+import com.teamservice.dto.GroupDto;
+import com.teamservice.dto.UserDto;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
-
-import java.util.List;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC,
@@ -14,9 +14,9 @@ import java.util.List;
 public interface RouterService {
 
 
-    User createUser(User user);
+    User createUser(UserDto userDto);
 
-    Group createGroup(Group group);
+    Group createGroup(GroupDto groupDto);
 
     void addUser(Long userId, Long teamId);
 

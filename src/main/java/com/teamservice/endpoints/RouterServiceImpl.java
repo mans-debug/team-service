@@ -1,15 +1,12 @@
 package com.teamservice.endpoints;
 
+import com.teamservice.dto.GroupDto;
+import com.teamservice.dto.UserDto;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import com.teamservice.services.GroupService;
 import com.teamservice.services.UserService;
 import jakarta.annotation.Resource;
-import jakarta.ejb.Init;
-import jakarta.ejb.SessionContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
@@ -31,16 +28,16 @@ public class RouterServiceImpl implements RouterService {
 
     @Override
     @WebMethod
-    public User createUser(User user) {
+    public User createUser(UserDto userDto) {
 		init();
-        return userService.create(user);
+        return userService.create(userDto);
     }
 
     @Override
     @WebMethod
-    public Group createGroup(Group group) {
+    public Group createGroup(GroupDto groupDto) {
 		init();
-        return groupService.create(group);
+        return groupService.create(groupDto);
     }
 
     @Override

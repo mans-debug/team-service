@@ -1,5 +1,7 @@
 package com.teamservice.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "groups")
 public class Group {
@@ -20,7 +24,7 @@ public class Group {
     //todo would be better to make it a constant list
     private String color;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User teamLead;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "group")
