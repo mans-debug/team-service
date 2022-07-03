@@ -36,6 +36,7 @@ public class Group {
             users = new ArrayList<>();
         }
         users.add(user);
+        user.setGroup(this);
         return this;
     }
 }

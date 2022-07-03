@@ -97,8 +97,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getUsersNotInGroup(Long groupId) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("select u from User u where u.group.id <> :groupId", User.class)
-                    .setParameter("groupId", groupId)
+                    .createQuery("select u from User u where u.group.id = null", User.class)
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();

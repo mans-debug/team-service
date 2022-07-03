@@ -4,8 +4,8 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.username">postgres</property> <!--change-->
-        <property name="connection.password">1234</property> <!--change-->
-        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property> <!--change-->
+        <property name="connection.password">qwerty12345</property> <!--change-->
+        <property name="connection.url">jdbc:postgresql://localhost:5432/aston</property> <!--change-->
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgresPlusDialect</property>
         <property name="show_sql">true</property> <!--optional-->
@@ -13,7 +13,7 @@
         <property name="hibernate.hikari.maximumPoolSize">20</property>
         <property name="hibernate.connection.provider_class">com.zaxxer.hikari.hibernate.HikariConnectionProvider
         </property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.teamservice.models.Group"/>
         <mapping class="com.teamservice.models.User"/>
     </session-factory>

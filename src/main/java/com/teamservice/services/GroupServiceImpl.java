@@ -34,7 +34,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void addUser(Long userId, Long teamId) {
         userRepository.findById(userId)
-                .ifPresent(x -> groupRepository.addUser(teamId, userRepository.getById(userId)));
+                .ifPresent(x -> groupRepository.addUser(teamId, x));
     }
 
     @Override

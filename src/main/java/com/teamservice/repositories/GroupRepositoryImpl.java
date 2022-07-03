@@ -116,6 +116,7 @@ public class GroupRepositoryImpl implements GroupRepository {
                 return;
             Group group = session.get(Group.class, groupId).addUser(user);
             session.saveOrUpdate(group);
+            session.merge(user);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
