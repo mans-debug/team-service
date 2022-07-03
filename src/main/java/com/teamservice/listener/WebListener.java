@@ -33,4 +33,9 @@ public class WebListener implements ServletContextListener {
         sce.getServletContext().setAttribute("userService", userService);
         sce.getServletContext().setAttribute("groupService", groupService);
     }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        sessionFactory.close();
+    }
 }

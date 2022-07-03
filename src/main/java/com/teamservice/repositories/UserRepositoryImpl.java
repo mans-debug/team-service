@@ -107,10 +107,11 @@ public class UserRepositoryImpl implements UserRepository {
 
 
     @Override
+    //todo change sql query
     public List<User> dayOverDue(Integer days) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("select u from User u where cast((current_date - u.lastModified) as integer) <= :days ", User.class)
+                    .createNativeQuery("select * from users where EXTRACT(DAY FROM current_timestamp - users.lastmodified) >= :days", User.class)
                     .setParameter("days", days)
                     .getResultList();
         } catch (Exception e) {

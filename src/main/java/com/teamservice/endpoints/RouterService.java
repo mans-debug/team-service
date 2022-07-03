@@ -24,6 +24,7 @@ public interface RouterService {
     void addUser(Long userId, Long teamId);
 
     void removeByTeamLeadId(Long teamleadId);
+
     @WebMethod(action = "usersNotInGroup", operationName = "usersNotInGroup")
     @WebResult(name="userArray", partName="users")
     User[] usersNotInGroup(Long groupId);

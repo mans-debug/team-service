@@ -27,8 +27,8 @@ public class GroupServiceImpl implements GroupService {
             Group group = Group.builder()
                     .color(groupDto.getColor())
                     .teamLead(x)
-                    .users(Collections.singletonList(x))
                     .build();
+            addUser(x.getTelegramId(), group.getId());
             group = groupRepository.save(group);
         });
         return createdGroup;

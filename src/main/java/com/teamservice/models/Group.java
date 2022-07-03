@@ -27,7 +27,7 @@ public class Group {
     @OneToOne(cascade = CascadeType.PERSIST)
     private User teamLead;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "group")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "group")
     private List<User> users;
 
 

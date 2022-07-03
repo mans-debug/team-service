@@ -21,7 +21,6 @@ import jakarta.xml.ws.handler.MessageContext;
 public class RouterServiceImpl implements RouterService {
     private UserService userService;
     private GroupService groupService;
-    private Long x;
     @Resource
     private WebServiceContext context;
 
