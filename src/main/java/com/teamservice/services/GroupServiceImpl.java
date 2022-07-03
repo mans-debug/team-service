@@ -5,11 +5,7 @@ import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import com.teamservice.repositories.GroupRepository;
 import com.teamservice.repositories.UserRepository;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 
-import java.util.List;
 import java.util.Optional;
 
 public class GroupServiceImpl implements GroupService {
@@ -44,5 +40,10 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public void removeByTeamLeadId(Long teamLeadId) {
         groupRepository.removeByTeamLeadId(teamLeadId);
+    }
+
+    @Override
+    public Group getByTeamleadId(Long teamleadId) {
+        return groupRepository.getByTeamleadId(teamleadId);
     }
 }

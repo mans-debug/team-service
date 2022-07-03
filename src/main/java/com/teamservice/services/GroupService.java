@@ -12,4 +12,6 @@ public interface GroupService {
     void addUser(Long userId, Long teamId);
 
     void removeByTeamLeadId(Long teamLeadId);
+
+    Group getByTeamleadId(Long userId);
 }

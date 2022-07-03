@@ -122,4 +122,14 @@ public class GroupRepositoryImpl implements GroupRepository {
             throw new RuntimeException();
         }
     }
+
+    @Override
+    public Group getByTeamleadId(Long teamleadId) {
+        try (Session session = sessionFactory.openSession()) {
+            return session
+                    .createQuery("select g from Group g where g.teamLead.telegramId = :teamleadId", Group.class)
+                    .setParameter("teamleadId", teamleadId)
+                    .getSingleResult();
+        }
+    }
 }

@@ -7,4 +7,6 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
     void removeByTeamLeadId(Long teamLeadId);
 
     void addUser(Long groupId, User user);
+
+    Group getByTeamleadId(Long userId);
 }

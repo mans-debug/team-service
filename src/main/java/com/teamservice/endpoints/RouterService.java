@@ -4,6 +4,8 @@ import com.teamservice.dto.GroupDto;
 import com.teamservice.dto.UserDto;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 
@@ -24,4 +26,6 @@ public interface RouterService {
 
     User[] usersNotInGroup(Long groupId);
 
+    @WebMethod
+    Long getGroupIdByTeamleadId(@WebParam(name = "userid") Long userId);
 }
