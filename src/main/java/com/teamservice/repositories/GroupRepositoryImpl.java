@@ -97,10 +97,15 @@ public class GroupRepositoryImpl implements GroupRepository {
     public void removeByTeamLeadId(Long teamLeadId) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            int rowsUpdated =
-                    session.createQuery("delete from Group g where g.teamLead.telegramId = :teamLeadId")
+            Group group =
+                    session.createQuery("select g from Group g where g.teamLead.telegramId = :teamLeadId", Group.class)
                             .setParameter("teamLeadId", teamLeadId)
-                            .executeUpdate();
+                            .getSingleResult();
+            for (User user : group.getUsers()) {
+                user.setGroup(null);
+            }
+            group.setTeamLead(null);
+            session.remove(group);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,7 +26,7 @@ public class User {
     private Date lastModified;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", nullable = true)
     private Group group;
 
     public User(Long telegramId, String firstName, String lastName) {

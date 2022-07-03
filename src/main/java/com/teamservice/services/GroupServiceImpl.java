@@ -6,6 +6,8 @@ import com.teamservice.models.User;
 import com.teamservice.repositories.GroupRepository;
 import com.teamservice.repositories.UserRepository;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 public class GroupServiceImpl implements GroupService {
@@ -25,6 +27,7 @@ public class GroupServiceImpl implements GroupService {
             Group group = Group.builder()
                     .color(groupDto.getColor())
                     .teamLead(x)
+                    .users(Collections.singletonList(x))
                     .build();
             group = groupRepository.save(group);
         });
