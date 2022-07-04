@@ -33,5 +33,5 @@ public interface RouterService {
     @WebResult(name="group", partName="group")
     GroupDto getGroupIdByTeamleadId(@WebParam(name = "userid") Long userId);
 
-    User[] notTeamleads();
+    UserDto[] notTeamleads();
 }

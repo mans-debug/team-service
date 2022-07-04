@@ -70,9 +70,9 @@ public class RouterServiceImpl implements RouterService {
     }
 
     @Override
-    public User[] notTeamleads(){
+    public UserDto[] notTeamleads(){
         init();
-        return userService.getNotTeamleads().stream().toArray(User[]::new);
+        return userService.getNotTeamleads().stream().toArray(UserDto[]::new);
     }
     
     private void init(){
