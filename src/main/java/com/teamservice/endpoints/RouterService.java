@@ -32,4 +32,6 @@ public interface RouterService {
     @WebMethod(action = "getGroupIdByTeamleadId", operationName = "getGroupIdByTeamleadId")
     @WebResult(name="group", partName="group")
     GroupDto getGroupIdByTeamleadId(@WebParam(name = "userid") Long userId);
+
+    User[] notTeamleads();
 }

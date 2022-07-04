@@ -15,4 +15,5 @@ public interface UserService {
 
     ExpiredUsers expiredLector();
 
+    List<UserDto> getNotTeamleads();
 }

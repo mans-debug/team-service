@@ -120,4 +120,16 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public List<User> getNotTeamleads() {
+        try (Session session = sessionFactory.openSession()) {
+            return session
+                    .createQuery("select u from User u where u.group.teamLead <> u", User.class)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
 }

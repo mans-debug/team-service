@@ -68,6 +68,12 @@ public class RouterServiceImpl implements RouterService {
        return groupService.getByTeamleadId(teamleadId);
 //        return new GroupDto();
     }
+
+    @Override
+    public User[] notTeamleads(){
+        init();
+        return userService.getNotTeamleads().stream().toArray(User[]::new);
+    }
     
     private void init(){
         if(userService == null){
