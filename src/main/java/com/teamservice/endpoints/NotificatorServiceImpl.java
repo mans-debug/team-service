@@ -1,6 +1,7 @@
 package com.teamservice.endpoints;
 
 import com.teamservice.dto.ExpiredUsers;
+import com.teamservice.dto.ExpiredUsersArrayDto;
 import com.teamservice.models.User;
 import com.teamservice.services.GroupService;
 import com.teamservice.services.UserService;
@@ -14,6 +15,9 @@ import jakarta.xml.ws.WebServiceContext;
 import jakarta.xml.ws.handler.MessageContext;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+import java.util.List;
+
 @WebService(endpointInterface = "com.teamservice.endpoints.NotificatorService",
         portName = "notificatorPort",
         serviceName = "notificatorService")
@@ -24,15 +28,21 @@ public class NotificatorServiceImpl implements NotificatorService{
     private WebServiceContext context;
 
     @Override
-    public ExpiredUsers[] teamLeadExpiration() {
+    public ExpiredUsersArrayDto teamLeadExpiration() {
         init();
-        return userService.expiredTeamLead().stream().toArray(ExpiredUsers[]::new);
+        ExpiredUsersArrayDto send = new ExpiredUsersArrayDto();
+        List<ExpiredUsers> expiredUsers = userService.expiredTeamLead();
+        send.setExpiredUsersWithOwner(expiredUsers);
+        return send;
     }
 
     @Override
-    public ExpiredUsers lectorExpiration() {
+    public ExpiredUsersArrayDto lectorExpiration() {
         init();
-        return userService.expiredLector();
+        ExpiredUsersArrayDto send = new ExpiredUsersArrayDto();
+        ExpiredUsers expiredUsers = userService.expiredLector();
+        send.setExpiredUsersWithOwner(List.of(expiredUsers));
+        return send;
     }
 
     private void init(){
