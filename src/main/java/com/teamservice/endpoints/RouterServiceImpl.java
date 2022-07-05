@@ -57,7 +57,7 @@ public class RouterServiceImpl implements RouterService {
     @Override
     public UserDto[] usersNotInGroup(Long groupId) {
         init();
-        return userService.usersNotInGroup(groupId).stream().toArray(User[]::new);
+        return userService.usersNotInGroup(groupId).stream().toArray(UserDto[]::new);
         //return userService.usersNotInGroup(groupId).toArray(new User[0]);
     }
 
