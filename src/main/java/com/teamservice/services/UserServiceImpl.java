@@ -59,11 +59,11 @@ public class UserServiceImpl implements UserService {
 
     private List<UserDto> userListToUserDtoList(List<User> users) {
         return users.stream()
-                .map(x -> toUserDto(x)).collect(Collectors.toList());
+                .map(this::toUserDto).collect(Collectors.toList());
     }
 
     private UserDto toUserDto(User x) {
-        return new UserDto(x.getTelegramId(), x.getFirstName(), x.getLastName());
+        return new UserDto(x.getTelegramId(), x.getFirstName(), x.getLastName(), x.getLastModified().toString());
     }
 
     @Override
