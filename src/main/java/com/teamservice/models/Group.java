@@ -1,15 +1,12 @@
 package com.teamservice.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Data()
 @Entity
 @Builder
 @AllArgsConstructor
@@ -25,9 +22,11 @@ public class Group {
     private String color;
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
     private User teamLead;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "group")
+    @EqualsAndHashCode.Exclude
     private List<User> users;
 
 

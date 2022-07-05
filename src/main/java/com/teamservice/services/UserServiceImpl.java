@@ -6,6 +6,7 @@ import com.teamservice.models.User;
 import com.teamservice.repositories.UserRepository;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,10 +22,11 @@ public class UserServiceImpl implements UserService {
     public User create(UserDto userDto) {
         return userRepository.save(
                 User.builder()
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .telegramId(userDto.getTelegramId())
-                .build()
+                        .firstName(userDto.getFirstName())
+                        .lastName(userDto.getLastName())
+                        .lastModified(new Date())
+                        .telegramId(userDto.getTelegramId())
+                        .build()
         );
     }
 
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<ExpiredUsers> expiredTeamLead() {
-        List<User> expiredUsers =  userRepository.dayOverDue(1);
+        List<User> expiredUsers = userRepository.dayOverDue(1);
         //grouping by teamleads
         Map<User, List<User>> teamLeadAndExpiredUsers = expiredUsers
                 .stream()
@@ -73,7 +75,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getNotTeamleads(){
+    public List<UserDto> getNotTeamleads() {
         return userRepository.getNotTeamleads()
                 .stream().map(this::toUserDto)
                 .collect(Collectors.toList());

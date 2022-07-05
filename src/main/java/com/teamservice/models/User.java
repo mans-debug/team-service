@@ -1,15 +1,12 @@
 package com.teamservice.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
 @Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,6 +24,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "group_id", nullable = true)
+    @EqualsAndHashCode.Exclude
     private Group group;
 
     public User(Long telegramId, String firstName, String lastName) {

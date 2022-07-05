@@ -18,6 +18,6 @@ public interface NotificatorService {
     ExpiredUsers[] teamLeadExpiration();
 
     @WebMethod(action = "lectorExpiration", operationName = "lectorExpiration")
-    @WebResult(name="ExpiredUsers", partName="ExpiredUsers")
+    @WebResult(name="ExpiredUsersArr", partName="ExpiredUsersArr")
     ExpiredUsers lectorExpiration();
 }

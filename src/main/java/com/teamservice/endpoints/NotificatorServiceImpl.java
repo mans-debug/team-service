@@ -25,6 +25,7 @@ public class NotificatorServiceImpl implements NotificatorService{
 
     @Override
     public ExpiredUsers[] teamLeadExpiration() {
+        init();
         return userService.expiredTeamLead().stream().toArray(ExpiredUsers[]::new);
     }
 
