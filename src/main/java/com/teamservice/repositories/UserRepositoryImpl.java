@@ -97,7 +97,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getUsersNotInGroup(Long groupId) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("select u from User u where u.group.id = null", User.class)
+                    .createQuery("select u from User u where u.group is null", User.class)
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +124,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getNotTeamleads() {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createQuery("select u from User u where u.group.teamLead <> u", User.class)
+                    .createQuery("select u from User u where u not in (select g.teamLead from Group g)", User.class)
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
