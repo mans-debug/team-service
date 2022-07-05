@@ -27,7 +27,7 @@ public interface RouterService {
 
     @WebMethod(action = "usersNotInGroup", operationName = "usersNotInGroup")
     @WebResult(name="userArray", partName="users")
-    UserDto[] usersNotInGroup(Long groupId);
+    User[] usersNotInGroup(Long groupId);
 
     @WebMethod(action = "getGroupIdByTeamleadId", operationName = "getGroupIdByTeamleadId")
     @WebResult(name="group", partName="group")

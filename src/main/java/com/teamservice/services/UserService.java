@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     User create(UserDto userDto);
 
-    List<UserDto> usersNotInGroup(Long groupId);
+    List<User> usersNotInGroup(Long groupId);
 
     List<ExpiredUsers> expiredTeamLead();
 
