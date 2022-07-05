@@ -29,8 +29,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> usersNotInGroup(Long groupId) {
-        return userRepository.getUsersNotInGroup(groupId);
+    public List<UserDto> usersNotInGroup(Long groupId) {
+        return userRepository.getUsersNotInGroup(groupId)
+                .stream()
+                .map(this::toUserDto)
+                .collect(Collectors.toList());
     }
 
     @Override
