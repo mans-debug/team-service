@@ -6,6 +6,7 @@ import com.teamservice.models.User;
 import com.teamservice.repositories.UserRepository;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private UserDto toUserDto(User x) {
-        return new UserDto(x.getTelegramId(), x.getFirstName(), x.getLastName());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM");
+        return new UserDto(x.getTelegramId(), x.getFirstName(), x.getLastName(),formatter.format(x.getLastModified()));
     }
 
     @Override
@@ -71,6 +73,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.dayOverDue(3);
         return ExpiredUsers.builder()
                 .expiredUsers(userListToUserDtoList(users))
+                .ownerId(0L)
                 .build();
     }
 
