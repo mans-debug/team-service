@@ -111,7 +111,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> dayOverDue(Integer days) {
         try (Session session = sessionFactory.openSession()) {
             return session
-                    .createNativeQuery("select * from users where EXTRACT(DAY FROM current_timestamp - users.lastmodified) >= :days", User.class)
+                    .createNativeQuery("select * from team_service.users u where EXTRACT(DAY FROM current_timestamp - u.lastmodified) >= :days", User.class)
                     .setParameter("days", days)
                     .getResultList();
         } catch (Exception e) {
