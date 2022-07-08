@@ -2,6 +2,7 @@ package com.teamservice.endpoints;
 
 import com.teamservice.dto.GroupDto;
 import com.teamservice.dto.UserDto;
+import com.teamservice.dto.UsersArray;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import com.teamservice.services.GroupService;
@@ -55,10 +56,11 @@ public class RouterServiceImpl implements RouterService {
     }
 
     @Override
-    public UserDto[] usersNotInGroup(Long groupId) {
+    public UsersArray usersNotInGroup(Long groupId) {
         init();
-        return userService.usersNotInGroup(groupId).stream().toArray(UserDto[]::new);
-        //return userService.usersNotInGroup(groupId).toArray(new User[0]);
+        UsersArray users = new UsersArray();
+        users.setUser(userService.usersNotInGroup(groupId));
+        return users;
     }
 
     @Override
@@ -70,9 +72,11 @@ public class RouterServiceImpl implements RouterService {
     }
 
     @Override
-    public UserDto[] notTeamleads(){
+    public UsersArray notTeamleads(){
         init();
-        return userService.getNotTeamleads().stream().toArray(UserDto[]::new);
+        UsersArray users = new UsersArray();
+        users.setUser(userService.getNotTeamleads());
+        return users;
     }
     
     private void init(){

@@ -5,13 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-    private Long telegramId;
-    private String firstName;
-    private String lastName;
-    private String lastModified;
+public class UsersArray {
+    private List<UserDto> user;
 }

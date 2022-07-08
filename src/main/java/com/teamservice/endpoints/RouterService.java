@@ -2,6 +2,7 @@ package com.teamservice.endpoints;
 
 import com.teamservice.dto.GroupDto;
 import com.teamservice.dto.UserDto;
+import com.teamservice.dto.UsersArray;
 import com.teamservice.models.Group;
 import com.teamservice.models.User;
 import jakarta.jws.WebMethod;
@@ -26,13 +27,13 @@ public interface RouterService {
     void removeByTeamLeadId(Long teamleadId);
 
     @WebMethod(action = "usersNotInGroup", operationName = "usersNotInGroup")
-    @WebResult(name="userArray", partName="users")
-    UserDto[] usersNotInGroup(Long groupId);
+    @WebResult(name="Users", partName="Users")
+    UsersArray usersNotInGroup(Long groupId);
 
     @WebMethod(action = "getGroupIdByTeamleadId", operationName = "getGroupIdByTeamleadId")
     @WebResult(name="group", partName="group")
     GroupDto getGroupIdByTeamleadId(@WebParam(name = "userid") Long userId);
     @WebMethod(action = "notTeamleads", operationName = "notTeamleads")
-    @WebResult(name="userArray", partName="users")
-    UserDto[] notTeamleads();
+    @WebResult(name="Users", partName="Users")
+    UsersArray notTeamleads();
 }
