@@ -21,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(UserDto userDto) {
+        if(userRepository.existsById(userDto.getTelegramId())){
+            return null;
+        }
         return userRepository.save(
                 User.builder()
                         .firstName(userDto.getFirstName())
